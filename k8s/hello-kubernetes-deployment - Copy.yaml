@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-k8s-deployment
+  labels:
+    app: dotnet
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: dotnet
+  template:
+    metadata:
+      labels:
+        app: dotnet
+    spec:
+      containers:
+      - name: hello-k8s
+        image: amitjoshipune/hello-kubernetes:v1
+        ports:
+        - containerPort: 8080
+        env:
+        - name: ASPNETCORE_ENVIRONMENT
+          value: "Development"
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: dotnet-service
+spec:
+  selector:
+    app: dotnet
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
+  type: LoadBalancer
+  
