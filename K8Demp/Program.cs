@@ -1,4 +1,12 @@
-var builder = WebApplication.CreateBuilder(args);
+//var builder = WebApplication.CreateBuilder(args);
+
+var builder = WebApplication.CreateBuilder(new WebApplicationOptions
+{
+    ApplicationName = typeof(Program).Assembly.GetName().Name,
+    ContentRootPath = Directory.GetCurrentDirectory(),
+    Args = args,
+    WebRootPath = "wwwroot"
+});
 
 // Add services to the container.
 
@@ -9,12 +17,16 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
+/*
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
+    */
     app.UseSwagger();
     app.UseSwaggerUI();
+/*
 }
+*/
 
 //app.UseHttpsRedirection();
 
@@ -22,4 +34,5 @@ app.UseAuthorization();
 
 app.MapControllers();
 
+app.Urls.Add("http://0.0.0.0:8080");
 app.Run();

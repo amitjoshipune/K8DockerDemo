@@ -29,6 +29,8 @@ WORKDIR /app
 USER root
 RUN apt-get update \
  && apt-get install -y curl
+RUN apt-get update \
+ && apt-get install -y procps
  USER app
 COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "K8Demp.dll"]
