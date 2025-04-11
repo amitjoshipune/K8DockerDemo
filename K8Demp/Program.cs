@@ -1,5 +1,6 @@
-//var builder = WebApplication.CreateBuilder(args);
+var builder = WebApplication.CreateBuilder(args);
 
+/*
 var builder = WebApplication.CreateBuilder(new WebApplicationOptions
 {
     ApplicationName = typeof(Program).Assembly.GetName().Name,
@@ -7,6 +8,7 @@ var builder = WebApplication.CreateBuilder(new WebApplicationOptions
     Args = args,
     WebRootPath = "wwwroot"
 });
+*/
 
 // Add services to the container.
 
@@ -34,5 +36,5 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-app.Urls.Add("http://0.0.0.0:8080");
+//app.Urls.Add("http://0.0.0.0:8080");
 app.Run();
